@@ -1,0 +1,76 @@
+Functional Requirements
+ 2.1 Faculty Profile Management 
+2.2 Contribution Entry 
+2.3 Contribution Review 
+2.4 Contribution Reporting
+ 2.5 User Roles and Permissions
+
+Requirement Description: 
+The system shall allow faculty members to create and manage their profiles, including personal information, educational background, and contact details.
+
+The system shall allow faculty members to enter contributions, including publications, research projects, and presentations, providing details such as title, date, and category.
+
+Non-Functional Requirements
+(Define performance, security, reliability, usability, and scalability requirements)
+
+1.	Entity: Faculty Member
+•	Attributes:
+•	Faculty ID (Primary Key)
+•	First Name
+•	Last Name
+•	Email
+•	Phone Number
+•	Department
+•	Relationships:
+•	A faculty member can have multiple contributions (one-to-many).
+2.	Entity: Contribution
+•	Attributes:
+•	Contribution ID (Primary Key)
+•	Title
+•	Description
+•	Date
+•	Category (e.g., Publication, Research Project, Presentation)
+•	Status (e.g., Submitted, Approved, Rejected)
+•	Relationships:
+•	A contribution is linked to a single faculty member (many-to-one).
+•	A contribution can have multiple authors (faculty members), which creates a many-to-many relationship. To normalize this, you might introduce a junction table "ContributionAuthors" with attributes like ContributionID and FacultyID.
+3.	Entity: Department
+•	Attributes:
+•	Department ID (Primary Key)
+•	Department Name
+•	Relationships:
+•	Faculty members belong to a department (many-to-one).
+4.	Entity: User
+•	Attributes:
+•	User ID (Primary Key)
+•	Username
+•	Password
+•	Role (e.g., Admin, Faculty Member)
+•	Relationships:
+•	Users can be associated with one or more faculty members (faculty members may have a user account), creating a one-to-one or one-to-many relationship.
+5.	Entity: Reviewer
+•	Attributes:
+•	Reviewer ID (Primary Key)
+•	First Name
+•	Last Name
+•	Email
+•	Relationships:
+•	Reviewers are assigned to review contributions (many-to-many through an intermediate "ReviewAssignment" table).
+6.	Entity: ReviewAssignment
+•	Attributes:
+•	Assignment ID (Primary Key)
+•	Contribution ID (Foreign Key)
+•	Reviewer ID (Foreign Key)
+•	Relationships:
+•	Represents the many-to-many relationship between contributions and reviewers for review assignments.
+7.	Entity: Report
+•	Attributes:
+•	Report ID (Primary Key)
+•	Contribution ID (Foreign Key)
+•	Reviewer ID (Foreign Key)
+•	Comments
+•	Evaluation (e.g., Accept, Reject)
+•	Date of Review
+•	Relationships:
+•	Relates reviewed reports to contributions and reviewers.
+
